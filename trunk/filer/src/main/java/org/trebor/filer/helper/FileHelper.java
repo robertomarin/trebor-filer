@@ -2,9 +2,6 @@ package org.trebor.filer.helper;
 
 import java.io.File;
 
-import javax.swing.JFileChooser;
-import javax.swing.plaf.FileChooserUI;
-
 public class FileHelper {
 	
 	public boolean itsADirPath(String path) {
