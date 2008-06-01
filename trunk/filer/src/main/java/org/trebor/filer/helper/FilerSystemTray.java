@@ -35,10 +35,12 @@ public class FilerSystemTray {
 
     public FilerSystemTray(FileDemonstration fd) {
         this.fd = fd;
-
     }
 
     public void startSystemTray() {
+    	if(!SystemTray.isSupported())
+    		return;
+    	
         if (logger.isInfoEnabled()) {
             logger.info("iniciando system tray");
             logger.info("tray icon " + iconURL);
