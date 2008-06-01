@@ -3,15 +3,13 @@ package org.trebor.filer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
@@ -32,21 +30,12 @@ import javax.swing.table.TableModel;
 
 import org.apache.commons.validator.GenericValidator;
 import org.trebor.filer.helper.FileHelper;
-import org.trebor.filer.helper.FileRenamerHelper;
-import org.trebor.filer.log.LogWriterHelper;
-
 
 public class FileDemonstration extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	private JTable table;
-
-	private TableModel model;
-
-	private LayoutManager layout;
-
-	private File dirRoot;
 
 	private JTextField dirRootPath;
 
@@ -56,39 +45,38 @@ public class FileDemonstration extends JFrame {
 
 	private JCheckBox lowerCase;
 
-	private JTextField patternReplace;
+	private JTextField filter;
 
-	private JTextField patternFiles;
+	private JTextField pattern;
 
 	private JComboBox justBox;
 
 	private JButton rename;
 
-	private final JPanel north;
-
-	private final JPanel south;
-
-	private final JPanel center;
-
-	private static final String patternMessage = "filtro de arquivos";
-	
 	private FileHelper fileHelper;
 
 	public FileDemonstration() {
 
 		super("FileR");
-		
+
 		fileHelper = new FileHelper();
-		
-		initialize();
+		setLayout(new BorderLayout(10, 10));
 
-		layout = new BorderLayout(10, 10);
-		setLayout(layout);
+		montaCentro();
+		montaSul();
+		montaNorte();
 
-		JLabel label = new JLabel("Select root directory:");
 
-		dirRootPath = new JTextField("h:/testes", 28);
+		this.setSize(700, 500);
+		this.setResizable(true);
+		this.hidePreviewButton();
+	}
+	
+	private void montaNorte() {
+		final JPanel north = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		north.add(new JLabel("Select root directory:"));
 
+		dirRootPath = new JTextField("d:/testes", 20);
 		dirRootPath.getDocument().addDocumentListener(new DocumentListener() {
 
 			public void changedUpdate(DocumentEvent e) {
@@ -104,9 +92,10 @@ public class FileDemonstration extends JFrame {
 			}
 		});
 
-		JButton button = new JButton("Browse...");
+		north.add(dirRootPath);
 
-		button.addActionListener(new ActionListener() {
+		JButton browseButton = new JButton("Browse...");
+		browseButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				File dirRoot = getDirRoot();
@@ -115,6 +104,8 @@ public class FileDemonstration extends JFrame {
 			}
 		});
 
+		north.add(browseButton);
+
 		previewButton = new JButton("Preview");
 		previewButton.addActionListener(new ActionListener() {
 
@@ -122,37 +113,26 @@ public class FileDemonstration extends JFrame {
 				search();
 			}
 		});
-
-		north = new JPanel();
-		north.add(label);
-		north.add(dirRootPath);
-		north.add(button);
 		north.add(previewButton);
+
 		add(north, BorderLayout.NORTH);
+	}
 
+	private void montaCentro() {
+		final JPanel center = new JPanel(new GridLayout(1, 1, 10, 10));
+		table = new JTable();
+		JScrollPane pane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		center.add(pane);
+		center.setEnabled(true);
+		this.add(center, BorderLayout.CENTER);
+	}
+
+	private void montaSul() {
+		final JPanel south = new JPanel(new GridLayout(1, 6, 10, 10));
+//		final JPanel south = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		lowerCase = new JCheckBox("lower case");
-
-		patternReplace = new JTextField(10);
-		patternFiles = new JTextField(10);
-
-		patternFiles.setText(patternMessage);
-		patternFiles.setForeground(Color.gray);
-
-		patternFiles.addFocusListener(new FocusListener() {
-
-			public void focusGained(FocusEvent e) {
-				patternFiles.setText("");
-				patternFiles.setForeground(Color.black);
-			}
-
-			public void focusLost(FocusEvent e) {
-				if (GenericValidator.isBlankOrNull(patternFiles.getText())) {
-					patternFiles.setText("filtro de arquivos");
-					patternFiles.setForeground(Color.gray);
-				}
-			}
-
-		});
+		south.add(lowerCase);
 
 		justBox = new JComboBox(new JustBox[] { JustBox.FILES, JustBox.FOLDERS });
 		justBox.addActionListener(new ActionListener() {
@@ -163,63 +143,61 @@ public class FileDemonstration extends JFrame {
 
 		});
 
-		center = new JPanel(new GridLayout(1, 5));
-		this.add(center, BorderLayout.CENTER);
-
-		south = new JPanel(new GridLayout(1, 4));
-		south.add(lowerCase);
 		south.add(justBox);
-		south.add(patternReplace);
-		south.add(patternFiles);
-		
-		this.add(south, BorderLayout.SOUTH);
+
+		filter = new JTextField(10);
+
+		south.add(filter);
+
+		pattern = new JTextField(10);
+		pattern.setText(FileHelper.DEFAULT_FILTER);
+		pattern.setForeground(Color.gray);
+		pattern.addFocusListener(new FocusListener() {
+
+			public void focusGained(FocusEvent e) {
+				pattern.setText("");
+				pattern.setForeground(Color.BLACK);
+			}
+
+			public void focusLost(FocusEvent e) {
+				if (GenericValidator.isBlankOrNull(pattern.getText())) {
+					pattern.setText("filtro de arquivos");
+					pattern.setForeground(Color.GRAY);
+				}
+			}
+
+		});
+		south.add(pattern);
+
 		south.add(this.getRenameButton());
-
-		table = new JTable(model);
-
-		JScrollPane pane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		center.add(pane);
-		center.setEnabled(false);
-
-		this.setSize(700, 550);
-		this.setResizable(true);
-		this.hidePreviewButton();
+		this.add(south, BorderLayout.SOUTH);
 	}
 
 	private JButton getRenameButton() {
 		this.rename = new JButton("rename!");
-		this.rename.setMaximumSize(new Dimension(5, 4));
+		this.rename.setMaximumSize(new Dimension(30, 4));
 		this.rename.setEnabled(false);
-		
+
 		this.rename.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 
-				LogWriterHelper helper = new LogWriterHelper(files);
-				if (helper.storeToXML()) {
-					for (File file : files.keySet()) {
-						file.renameTo(files.get(file));
-					}
-
-					JOptionPane.showMessageDialog(center, "arquivos renomeados corretamente!\n Veja seu log aqui: "
-							+ helper.getLogFileName(), "Rename Success", JOptionPane.INFORMATION_MESSAGE);
+				if (fileHelper.rename(files)) {
+					JOptionPane.showMessageDialog(null, "arquivos renomeados corretamente!\n Veja seu log aqui: "
+					/* fileHelper.getLogFileName() */, "Rename Success", JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(center, "erro ao renomear arquivos!", "Rename Fail", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "erro ao renomear arquivos!", "Rename Fail",
+							JOptionPane.ERROR_MESSAGE);
 				}
 
-				rename.setEnabled(false);
 				files = null;
 				table.setModel(new DefaultTableModel(new String[] { "Old Name", "New Name" }, 0));
 			}
-		});
-		
-		return this.rename;
-	}
 
-	private void initialize() {
-		this.setSize(new Dimension(400, 400));
-		this.setTitle("FileR");
+		});
+
+		rename.setEnabled(false);
+		return this.rename;
 	}
 
 	private void hidePreviewButton() {
@@ -228,8 +206,11 @@ public class FileDemonstration extends JFrame {
 		Color foreground = null;
 		if (itsADirPath) {
 			foreground = Color.BLACK;
+			if (files != null && !files.isEmpty())
+				rename.setEnabled(true);
 		} else {
 			foreground = Color.RED;
+			rename.setEnabled(false);
 		}
 
 		dirRootPath.setForeground(foreground);
@@ -249,31 +230,11 @@ public class FileDemonstration extends JFrame {
 		return dirRoot;
 	}
 
-	private boolean isValidDirRoot(File dirRoot) {
-		return dirRoot != null && isValidRootFile(dirRoot) && dirRoot.exists();
-
-	}
-
-	private boolean isValidRootFile(File file) {
-		List<File> l = Arrays.asList(File.listRoots());
-		return !l.contains(file);
-	}
-
-	private void invalidDirRootMessage() {
-		JOptionPane.showMessageDialog(this, "Invalid dir-root: " + dirRoot, "Invalid Dir", JOptionPane.ERROR_MESSAGE);
-	}
-
-	private void filer() {
-		
-		String filter = !patternMessage.equals(patternFiles.getText()) ? patternFiles.getText() : "";
-		
-		FileRenamerHelper filer = new FileRenamerHelper(patternReplace.getText(), filter, lowerCase.isSelected(),
+	private boolean filer(File dirRoot) {
+		this.files = fileHelper.filer(dirRoot, pattern.getText(), filter.getText(), lowerCase.isSelected(),
 				JustBox.class.cast(justBox.getSelectedItem()));
 
-		files = filer.generateFileNames(dirRoot);
-
-		model = new DefaultTableModel(new String[] { "Old Name", "New Name" }, files.size());
-
+		TableModel model = new DefaultTableModel(new String[] { "Old Name", "New Name" }, files.size());
 		int i = 0;
 		for (File key : files.keySet()) {
 			model.setValueAt(key.getName(), i, 0);
@@ -282,20 +243,20 @@ public class FileDemonstration extends JFrame {
 		}
 
 		table.setModel(model);
+		return !files.isEmpty();
+	}
 
+	private File getRaiz() {
+		File dirRoot = new File(dirRootPath.getText());
+		if (!fileHelper.isValidRootFile(dirRoot)) {
+			JOptionPane.showMessageDialog(this, "Invalid dir-root: " + dirRoot, "Invalid Dir",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+		return dirRoot;
 	}
 
 	private void search() {
-
-		dirRoot = new File(dirRootPath.getText());
-		if (isValidDirRoot(dirRoot)) {
-			filer();
-		} else {
-			invalidDirRootMessage();
-		}
-
-		rename.setEnabled(true);
-		center.setEnabled(true);
+		rename.setEnabled(filer(getRaiz()));
 	}
-
 }
