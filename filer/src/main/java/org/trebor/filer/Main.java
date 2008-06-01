@@ -2,7 +2,6 @@ package org.trebor.filer;
 
 import java.awt.EventQueue;
 import java.awt.SplashScreen;
-import java.awt.SystemTray;
 
 import javax.swing.JFrame;
 
@@ -13,7 +12,7 @@ public class Main {
 
 	private static Logger logger = Logger.getLogger(Main.class);
 
-	private static final long MINIMUN_TIME = 2000;
+	private static final long MINIMUN_TIME = 3000;
 
 	public static void main(String[] args) {
 
@@ -26,18 +25,15 @@ public class Main {
 				SplashScreen splash = SplashScreen.getSplashScreen();
 
 				fd = new FileDemonstration();
-				fd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+				fd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-				if (SystemTray.isSupported()) {
-					new FilerSystemTray(fd).startSystemTray();
-				}
+				new FilerSystemTray(fd).startSystemTray();
 
 				if (splash != null && splash.isVisible()) {
 					sleepIfNecessary(startTime);
 
 					if (logger.isInfoEnabled()) {
-						logger.info("fechando splash screen "
-								+ splash.getImageURL());
+						logger.info("fechando splash screen " + splash.getImageURL());
 					}
 					splash.close();
 				}
