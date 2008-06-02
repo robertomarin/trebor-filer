@@ -18,5 +18,20 @@
 		<priority value="DEBUG" />
 		<appender-ref ref="filer" />
 	</category>
-
+	
+	<category name="org">
+		<priority value="WARN" />
+		<appender-ref ref="filer" />
+	</category>
+	
+	<category name="com">
+		<priority value="WARN" />
+		<appender-ref ref="filer" />
+	</category>
+	
+	<category name="br">
+		<priority value="WARN" />
+		<appender-ref ref="filer" />
+	</category>
+	
 </log4j:configuration>

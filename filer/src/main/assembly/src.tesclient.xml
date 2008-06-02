@@ -1,0 +1,96 @@
+<assembly>
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>src/resources/bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>target</directory>
+			<outputDirectory></outputDirectory>
+			<includes>
+				<include>tesclient.exe</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/resources</directory>
+			<outputDirectory>conf</outputDirectory>
+			<includes>
+				<include>*.vm</include>
+				<include>*.properties</include>
+				<include>*.jks</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>filesTeste</directory>
+			<outputDirectory>filesTeste</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>src/resources</directory>
+			<outputDirectory>filesBackup</outputDirectory>
+			<includes>
+				<include>.empty</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/resources</directory>
+			<outputDirectory>filesIn</outputDirectory>
+			<includes>
+				<include>.empty</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/resources</directory>
+			<outputDirectory>filesOut</outputDirectory>
+			<includes>
+				<include>.empty</include>
+			</includes>
+		</fileSet>
+		<!--
+			<property name="conf.includes" value="*.vm *.properties" />
+			<echo>Copiando arquivos de configuração, excluindo: ${conf.excludes}</echo>
+			<copy todir="${dir.conf}">
+			<fileset dir="${src.resources}" includes="${conf.includes}" />
+			</copy>
+		-->
+
+		<fileSet>
+			<includes>
+				<include>README*</include>
+				<include>LICENSE*</include>
+				<include>NOTICE*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>lib/</outputDirectory>
+			<includes>
+				<include>*:jar:*</include>
+			</includes>
+			<excludes>
+				<exclude>*:sources</exclude>
+			</excludes>
+		</dependencySet>
+	</dependencySets>
+</assembly>
+
+<!-- 
+	<assembly>
+	<dependencySets>
+	<dependencySet>
+	<includes>
+	<include>*:jar:*</include>
+	</includes>
+	<excludes>
+	<exclude>*:sources</exclude>
+	</excludes>
+	</dependencySet>
+	</dependencySets>
+	</assembly> -->

@@ -23,12 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import org.apache.commons.validator.GenericValidator;
 import org.trebor.filer.helper.FileHelper;
 
 public class FileDemonstration extends JFrame {
@@ -37,9 +34,9 @@ public class FileDemonstration extends JFrame {
 
 	private JTable table;
 
-	private JTextField dirRootPath;
+	private JTextField rootRenamingDirectory;
 
-	private JButton previewButton;
+	private JButton preview;
 
 	private Map<File, File> files;
 
@@ -66,54 +63,56 @@ public class FileDemonstration extends JFrame {
 		montaSul();
 		montaNorte();
 
-
 		this.setSize(700, 500);
 		this.setResizable(true);
-		this.hidePreviewButton();
+		this.verify();
 	}
-	
+
 	private void montaNorte() {
+		// final JPanel north = new JPanel(new GridLayout(1, 6, 10, 10));
 		final JPanel north = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		north.add(new JLabel("Select root directory:"));
 
-		dirRootPath = new JTextField("d:/testes", 20);
-		dirRootPath.getDocument().addDocumentListener(new DocumentListener() {
+		rootRenamingDirectory = new JTextField("d:/testes", 20);
+		// rootRenamingDirectory.getDocument().addDocumentListener(new
+		// DocumentListener() {
+		//
+		// public void changedUpdate(DocumentEvent e) {
+		// verify();
+		// }
+		//
+		// public void insertUpdate(DocumentEvent e) {
+		// verify();
+		// }
+		//
+		// public void removeUpdate(DocumentEvent e) {
+		// verify();
+		// }
+		// });
 
-			public void changedUpdate(DocumentEvent e) {
-				hidePreviewButton();
-			}
-
-			public void insertUpdate(DocumentEvent e) {
-				hidePreviewButton();
-			}
-
-			public void removeUpdate(DocumentEvent e) {
-				hidePreviewButton();
-			}
-		});
-
-		north.add(dirRootPath);
+		north.add(rootRenamingDirectory);
 
 		JButton browseButton = new JButton("Browse...");
 		browseButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				File dirRoot = getDirRoot();
-				if (dirRoot != null)
-					dirRootPath.setText(dirRoot.getAbsolutePath());
+				// File dirRoot = getDirRoot();
+				// if (dirRoot != null)
+				// rootRenamingDirectory.setText(dirRoot.getAbsolutePath());
 			}
 		});
 
 		north.add(browseButton);
 
-		previewButton = new JButton("Preview");
-		previewButton.addActionListener(new ActionListener() {
+		preview = new JButton("Preview");
+		preview.setMaximumSize(new Dimension(20, 5));
+		preview.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				search();
+				// search();
 			}
 		});
-		north.add(previewButton);
+		north.add(preview);
 
 		add(north, BorderLayout.NORTH);
 	}
@@ -129,25 +128,20 @@ public class FileDemonstration extends JFrame {
 	}
 
 	private void montaSul() {
-		final JPanel south = new JPanel(new GridLayout(1, 6, 10, 10));
-//		final JPanel south = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		// final JPanel south = new JPanel(new GridLayout(6, 1, 10, 10));
+		final JPanel south = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		lowerCase = new JCheckBox("lower case");
-		south.add(lowerCase);
 
 		justBox = new JComboBox(new JustBox[] { JustBox.FILES, JustBox.FOLDERS });
 		justBox.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				search();
+				// search();
 			}
 
 		});
 
-		south.add(justBox);
-
 		filter = new JTextField(10);
-
-		south.add(filter);
 
 		pattern = new JTextField(10);
 		pattern.setText(FileHelper.DEFAULT_FILTER);
@@ -155,26 +149,31 @@ public class FileDemonstration extends JFrame {
 		pattern.addFocusListener(new FocusListener() {
 
 			public void focusGained(FocusEvent e) {
-				pattern.setText("");
-				pattern.setForeground(Color.BLACK);
+				// pattern.setText("");
+				// pattern.setForeground(Color.BLACK);
 			}
 
 			public void focusLost(FocusEvent e) {
-				if (GenericValidator.isBlankOrNull(pattern.getText())) {
-					pattern.setText("filtro de arquivos");
-					pattern.setForeground(Color.GRAY);
-				}
+				// if (GenericValidator.isBlankOrNull(pattern.getText())) {
+				// pattern.setText("filtro de arquivos");
+				// pattern.setForeground(Color.GRAY);
+				// }
 			}
 
 		});
-		south.add(pattern);
 
+		south.add(lowerCase);
+		south.add(justBox);
+		south.add(filter);
+		south.add(pattern);
 		south.add(this.getRenameButton());
-		this.add(south, BorderLayout.SOUTH);
+
+		this.add(south, BorderLayout.WEST);
 	}
 
 	private JButton getRenameButton() {
 		this.rename = new JButton("rename!");
+		this.rename.setSize(10, 10);
 		this.rename.setMaximumSize(new Dimension(30, 4));
 		this.rename.setEnabled(false);
 
@@ -182,16 +181,20 @@ public class FileDemonstration extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if (fileHelper.rename(files)) {
-					JOptionPane.showMessageDialog(null, "arquivos renomeados corretamente!\n Veja seu log aqui: "
-					/* fileHelper.getLogFileName() */, "Rename Success", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(null, "erro ao renomear arquivos!", "Rename Fail",
-							JOptionPane.ERROR_MESSAGE);
-				}
-
-				files = null;
-				table.setModel(new DefaultTableModel(new String[] { "Old Name", "New Name" }, 0));
+				// if (fileHelper.rename(files)) {
+				// JOptionPane.showMessageDialog(null, "arquivos renomeados
+				// corretamente!\n Veja seu log aqui: "
+				// /* fileHelper.getLogFileName() */, "Rename Success",
+				// JOptionPane.INFORMATION_MESSAGE);
+				// } else {
+				// JOptionPane.showMessageDialog(null, "erro ao renomear
+				// arquivos!", "Rename Fail",
+				// JOptionPane.ERROR_MESSAGE);
+				// }
+				//
+				// files = null;
+				// table.setModel(new DefaultTableModel(new String[] { "Old
+				// Name", "New Name" }, 0));
 			}
 
 		});
@@ -200,8 +203,8 @@ public class FileDemonstration extends JFrame {
 		return this.rename;
 	}
 
-	private void hidePreviewButton() {
-		boolean itsADirPath = fileHelper.itsADirPath(dirRootPath.getText());
+	private void verify() {
+		boolean itsADirPath = fileHelper.itsADirPath(rootRenamingDirectory.getText());
 
 		Color foreground = null;
 		if (itsADirPath) {
@@ -213,7 +216,7 @@ public class FileDemonstration extends JFrame {
 			rename.setEnabled(false);
 		}
 
-		dirRootPath.setForeground(foreground);
+		rootRenamingDirectory.setForeground(foreground);
 	}
 
 	private File getDirRoot() {
@@ -247,7 +250,7 @@ public class FileDemonstration extends JFrame {
 	}
 
 	private File getRaiz() {
-		File dirRoot = new File(dirRootPath.getText());
+		File dirRoot = new File(rootRenamingDirectory.getText());
 		if (!fileHelper.isValidRootFile(dirRoot)) {
 			JOptionPane.showMessageDialog(this, "Invalid dir-root: " + dirRoot, "Invalid Dir",
 					JOptionPane.ERROR_MESSAGE);
