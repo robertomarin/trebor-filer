@@ -15,17 +15,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.apache.log4j.Logger;
-import org.trebor.filer.FileDemonstration;
 
 
 public class FilerSystemTray {
 
     private static final Logger logger = Logger.getLogger(FilerSystemTray.class);
     
-    private final FileDemonstration fd;
+    private final JFrame fd;
 
     private TrayIcon icon;
 
@@ -33,7 +33,7 @@ public class FilerSystemTray {
     
     private final String iconURL = "filer-logo.png";
 
-    public FilerSystemTray(FileDemonstration fd) {
+    public FilerSystemTray(JFrame fd) {
         this.fd = fd;
     }
 

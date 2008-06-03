@@ -4,7 +4,6 @@ import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.SplashScreen;
 
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -23,13 +22,13 @@ public class Main {
 
 		Runnable runner = new Runnable() {
 
-			private FileDemonstration fd;
+			private Antenna fd;
 
 			public void run() {
 				long startTime = System.currentTimeMillis();
 				SplashScreen splash = SplashScreen.getSplashScreen();
 
-				fd = new FileDemonstration();
+				fd = new Antenna();
 				fd.setVisible(true);
 				fd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				

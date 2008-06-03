@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -234,8 +235,7 @@ public class FileDemonstration extends JFrame {
 	}
 
 	private boolean filer(File dirRoot) {
-		this.files = fileHelper.filer(dirRoot, pattern.getText(), filter.getText(), lowerCase.isSelected(),
-				JustBox.class.cast(justBox.getSelectedItem()));
+//		this.files = fileHelper.filer(dirRoot, pattern.getText(), filter.getText(), lowerCase.isSelected(), folders);
 
 		TableModel model = new DefaultTableModel(new String[] { "Old Name", "New Name" }, files.size());
 		int i = 0;

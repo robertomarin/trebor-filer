@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Map;
 
-import org.trebor.filer.JustBox;
 import org.trebor.filer.log.LogWriterHelper;
 
 public class FileHelper {
@@ -31,11 +30,11 @@ public class FileHelper {
 		}
 	}
 
-	public Map<File, File> filer(File dirRoot, String pattern, String filter, boolean lowerCase, JustBox justBox) {
+	public Map<File, File> filer(File dirRoot, String regex, String replacement, String filter, boolean lowerCase, boolean justDirectory) {
 
 		filter = !DEFAULT_FILTER.equals(filter) ? filter : "";
 
-		FileRenamerHelper filer = new FileRenamerHelper(pattern, filter, lowerCase, justBox);
+		FileRenamerHelper filer = new FileRenamerHelper(regex, replacement, filter, lowerCase, justDirectory);
 
 		return filer.generateFileNames(dirRoot);
 	}
