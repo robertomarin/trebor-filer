@@ -5,25 +5,27 @@ import java.io.FileFilter;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.trebor.filer.JustBox;
-
+import org.apache.commons.validator.GenericValidator;
 
 public class FileRenamerHelper {
 	private Map<File, File> files;
 
 	private boolean lowerCase;
 
-	private String pattern;
+	private String regex;
 
 	private String[] fileTypes;
 
-	private final JustBox justBox;
+	private final boolean justDirectory;
 
-	public FileRenamerHelper(String patternToRename, String fileTypesString, boolean lowerCase,
-			JustBox justBox) {
+	private final String replacement;
 
-		this.pattern = patternToRename;
-		this.justBox = justBox;
+	public FileRenamerHelper(String regex, String replacement, String fileTypesString, boolean lowerCase,
+			boolean justDirectory) {
+
+		this.regex = regex;
+		this.replacement = !GenericValidator.isBlankOrNull(replacement) ? replacement : "";
+		this.justDirectory = justDirectory;
 
 		if (fileTypesString != null) {
 			fileTypes = fileTypesString.split("[,]");
@@ -36,7 +38,7 @@ public class FileRenamerHelper {
 	public Map<File, File> generateFileNames(File dirRoot) {
 		File[] fileList = dirRoot.listFiles(new FileFilter() {
 			public boolean accept(File pathname) {
-				if (justBox == JustBox.FOLDERS) {
+				if (justDirectory) {
 					return pathname.isDirectory();
 				}
 				return true;
@@ -55,9 +57,8 @@ public class FileRenamerHelper {
 				continue;
 
 			if (files.containsValue(newFile)) {
-				throw new IllegalStateException(
-						"erro, não pode existir dois arquivos com mesmo nome: "
-								+ newFile.getAbsolutePath());
+				throw new IllegalStateException("erro, não pode existir dois arquivos com mesmo nome: "
+						+ newFile.getAbsolutePath());
 			}
 
 			files.put(file, newFile);
@@ -86,8 +87,8 @@ public class FileRenamerHelper {
 		if (lowerCase)
 			fileName = fileName.toLowerCase();
 
-		if (pattern != null && !"".equals(pattern)) {
-			fileName = fileName.replaceAll(pattern, "");
+		if (regex != null && !"".equals(regex)) {
+			fileName = fileName.replaceAll(regex, replacement);
 		}
 
 		fileName = replaceMultipleWhiteSpaces(fileName);

@@ -31,7 +31,4 @@ public class PatternFilesTextField extends JTextField {
     }
     
     
-//    add
-    
-
 }

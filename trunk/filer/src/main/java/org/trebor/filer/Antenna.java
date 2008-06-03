@@ -46,6 +46,8 @@ import org.trebor.filer.helper.FileHelper;
 
 public class Antenna extends javax.swing.JFrame {
 
+	private static final long serialVersionUID = 654696448697579224L;
+
 	/** Creates new form Antenna */
 	public Antenna() {
 		initComponents();
@@ -59,8 +61,6 @@ public class Antenna extends javax.swing.JFrame {
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
-		buttonGroup1 = new javax.swing.ButtonGroup();
-		buttonGroup2 = new javax.swing.ButtonGroup();
 		rootRenamingDirectoryPanel = new javax.swing.JPanel();
 		selectRootDirectory = new javax.swing.JLabel();
 		rootRenamingDirectory = new javax.swing.JTextField();
@@ -82,7 +82,7 @@ public class Antenna extends javax.swing.JFrame {
 		replacement = new javax.swing.JTextField();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Antenna");
+		setTitle("FileR");
 
 		rootRenamingDirectoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(" Root Renaming Directory "));
 
@@ -93,7 +93,7 @@ public class Antenna extends javax.swing.JFrame {
 				rootRenamingDirectoryActionPerformed(evt);
 			}
 		});
-		
+
 		preview.setText("Preview");
 		preview.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +125,7 @@ public class Antenna extends javax.swing.JFrame {
 						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
 						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)));
 
-		jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" Rename Options"));
+		jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" Rename Options "));
 		jPanel2.setAutoscrolls(true);
 
 		lowerCase.setText("Lower Case");
@@ -205,7 +205,7 @@ public class Antenna extends javax.swing.JFrame {
 				jPanel3Layout.createSequentialGroup().add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
 						261, Short.MAX_VALUE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(rename)));
 
-		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(" Rename Patterns"));
+		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(" Rename Patterns "));
 		jPanel4.setAutoscrolls(true);
 
 		regexLabel.setText("Regex:");
@@ -306,12 +306,17 @@ public class Antenna extends javax.swing.JFrame {
 	}
 
 	private void renameActionPerformed(java.awt.event.ActionEvent evt) {
+		TableModel model = table.getModel();
+		for (int i = 0; i < model.getRowCount(); i++) {
+			Object valueAt = model.getValueAt(i, 1);
+			System.out.println(valueAt + " " + valueAt.getClass());
+		}
+
 		if (fileHelper.rename(files)) {
 			JOptionPane.showMessageDialog(null, "arquivos renomeados corretamente!\n Veja seu log aqui: "
 			/* fileHelper.getLogFileName() */, "Rename Success", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(null, "erro ao renomear arquivos!", "Rename Fail",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "erro ao renomear arquivos!", "Rename Fail", JOptionPane.ERROR_MESSAGE);
 		}
 
 		files = null;
@@ -368,8 +373,6 @@ public class Antenna extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify
 	private javax.swing.JButton browse;
-	private javax.swing.ButtonGroup buttonGroup1;
-	private javax.swing.ButtonGroup buttonGroup2;
 	private javax.swing.JTextField filter;
 	private javax.swing.JLabel filterLabel;
 	private javax.swing.JCheckBox folders;
@@ -387,10 +390,10 @@ public class Antenna extends javax.swing.JFrame {
 	private javax.swing.JTextField rootRenamingDirectory;
 	private javax.swing.JPanel rootRenamingDirectoryPanel;
 	private javax.swing.JLabel selectRootDirectory;
-	private javax.swing.JTable table; 
+	private javax.swing.JTable table;
 
 	// End of variables declaration
-	
+
 	private FileHelper fileHelper = new FileHelper();
 	private Map<File, File> files = new HashMap<File, File>();
 
@@ -425,8 +428,7 @@ public class Antenna extends javax.swing.JFrame {
 	}
 
 	private boolean filer(File dirRoot) {
-		this.files = fileHelper.filer(dirRoot, regex.getText(), filter.getText(), lowerCase.isSelected(),
-				null);
+		this.files = fileHelper.filer(dirRoot, regex.getText(), replacement.getText(), filter.getText(), lowerCase.isSelected(), folders.isSelected());
 
 		TableModel model = new DefaultTableModel(new String[] { "Old Name", "New Name" }, files.size());
 		int i = 0;
