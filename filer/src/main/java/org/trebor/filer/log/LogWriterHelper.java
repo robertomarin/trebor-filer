@@ -14,6 +14,9 @@ public class LogWriterHelper {
 	private final String fileName;
 
 	public LogWriterHelper(Map<File, File> files) {
+		if(files == null)
+			throw new IllegalArgumentException("Argument files cannot be null.");
+		
 		this.files = files;
 		this.fileName = "logs/log_" + System.currentTimeMillis() + ".xml";
 	}

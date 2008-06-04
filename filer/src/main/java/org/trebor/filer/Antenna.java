@@ -35,16 +35,15 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import org.trebor.filer.helper.FileHelper;
 
 public class Antenna extends javax.swing.JFrame {
+
+	private static final String[] COLUMN_NAMES = new String[] { "Atual Name", "New Name" };
 
 	private static final long serialVersionUID = 654696448697579224L;
 
@@ -175,15 +174,16 @@ public class Antenna extends javax.swing.JFrame {
 
 		jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(" Files "));
 
-		table.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+		model = new javax.swing.table.DefaultTableModel(new Object[][] {
 
-		}, new String[] { "Atual Name", "New Name" }) {
+		}, COLUMN_NAMES) {
 			boolean[] canEdit = new boolean[] { false, true };
 
 			public boolean isCellEditable(int rowIndex, int columnIndex) {
 				return canEdit[columnIndex];
 			}
-		});
+		};
+		table.setModel(model);
 		jScrollPane1.setViewportView(table);
 
 		rename.setText("Rename!");
@@ -306,7 +306,7 @@ public class Antenna extends javax.swing.JFrame {
 	}
 
 	private void renameActionPerformed(java.awt.event.ActionEvent evt) {
-		TableModel model = table.getModel();
+
 		for (int i = 0; i < model.getRowCount(); i++) {
 			Object valueAt = model.getValueAt(i, 1);
 			System.out.println(valueAt + " " + valueAt.getClass());
@@ -320,17 +320,24 @@ public class Antenna extends javax.swing.JFrame {
 		}
 
 		files = null;
-		table.setModel(new DefaultTableModel(new String[] { "Old Name", "New Name" }, 0));
+
+		eraseTableModel();
+		verify();
+	}
+
+	private void eraseTableModel() {
+		model.setDataVector(null, COLUMN_NAMES);
+		table.update(table.getGraphics());
 	}
 
 	private void previewActionPerformed(java.awt.event.ActionEvent evt) {
-		search();
+		boolean filer = filer();
+		rename.setEnabled(filer);
+		preview.setEnabled(filer);
 	}
 
 	private void browseActionPerformed(java.awt.event.ActionEvent evt) {
-		File dirRoot = getDirRoot();
-		if (dirRoot != null)
-			rootRenamingDirectory.setText(dirRoot.getAbsolutePath());
+		browse();
 	}
 
 	private void lowerCaseActionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,9 +361,7 @@ public class Antenna extends javax.swing.JFrame {
 	}
 
 	private void rootRenamingDirectoryActionPerformed(java.awt.event.ActionEvent evt) {
-		File dirRoot = getDirRoot();
-		if (dirRoot != null)
-			rootRenamingDirectory.setText(dirRoot.getAbsolutePath());
+		browse();
 	}
 
 	/**
@@ -391,69 +396,56 @@ public class Antenna extends javax.swing.JFrame {
 	private javax.swing.JPanel rootRenamingDirectoryPanel;
 	private javax.swing.JLabel selectRootDirectory;
 	private javax.swing.JTable table;
-
+	private javax.swing.table.DefaultTableModel model;
 	// End of variables declaration
 
 	private FileHelper fileHelper = new FileHelper();
 	private Map<File, File> files = new HashMap<File, File>();
 
 	private void verify() {
-		boolean itsADirPath = fileHelper.itsADirPath(rootRenamingDirectory.getText());
-
 		Color foreground = null;
-		if (itsADirPath) {
+
+		if (fileHelper.isDir(rootRenamingDirectory.getText())) {
 			foreground = Color.BLACK;
-			if (files != null && !files.isEmpty())
+			preview.setEnabled(true);
+			if (model.getRowCount() > 0)
 				rename.setEnabled(true);
 		} else {
 			foreground = Color.RED;
-			rename.setEnabled(false);
+			preview.setEnabled(false);
 		}
 
+		rename.setEnabled(false);
 		rootRenamingDirectory.setForeground(foreground);
 	}
 
-	private File getDirRoot() {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+	public boolean filer() {
+		this.files = fileHelper.filer(rootRenamingDirectory.getText(), regex.getText(), replacement.getText(), filter
+				.getText(), lowerCase.isSelected(), folders.isSelected());
 
-		if (JFileChooser.CANCEL_OPTION == fileChooser.showOpenDialog(this)) {
-			return null;
-		}
-
-		File dirRoot;
-		dirRoot = fileChooser.getSelectedFile();
-
-		return dirRoot;
-	}
-
-	private boolean filer(File dirRoot) {
-		this.files = fileHelper.filer(dirRoot, regex.getText(), replacement.getText(), filter.getText(), lowerCase.isSelected(), folders.isSelected());
-
-		TableModel model = new DefaultTableModel(new String[] { "Old Name", "New Name" }, files.size());
-		int i = 0;
+		// TableModel model = new DefaultTableModel(new String[] { "Old Name",
+		// "New Name" }, files.size());
+		// int i = 0;
+		eraseTableModel();
 		for (File key : files.keySet()) {
-			model.setValueAt(key.getName(), i, 0);
-			model.setValueAt(files.get(key).getName(), i, 1);
-			i++;
+			// model.setValueAt(key.getName(), i, 0);
+			// model.insertRow(i++, new File[] {key, files.get(key)});
+			model.addRow(new String[] { key.getName(), files.get(key).getName() });
 		}
 
-		table.setModel(model);
+		// Object[] array = files.keySet().toArray();
+		// Object[] array2 = files.values().toArray();
+		// model.
+
+		// table.setModel(model);
 		return !files.isEmpty();
 	}
 
-	private File getRaiz() {
-		File dirRoot = new File(rootRenamingDirectory.getText());
-		if (!fileHelper.isValidRootFile(dirRoot)) {
-			JOptionPane.showMessageDialog(this, "Invalid dir-root: " + dirRoot, "Invalid Dir",
-					JOptionPane.ERROR_MESSAGE);
+	private void browse() {
+		File dirRoot = fileHelper.getDirRoot(this);
+		if (dirRoot != null) {
+			rootRenamingDirectory.setText(dirRoot.getAbsolutePath());
 		}
-
-		return dirRoot;
-	}
-
-	private void search() {
-		rename.setEnabled(filer(getRaiz()));
 	}
 
 }
