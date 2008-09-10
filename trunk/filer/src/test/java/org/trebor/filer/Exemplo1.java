@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import org.junit.Test;
+
 public class Exemplo1 {
 
 	public static void main(String[] args) throws AWTException {
@@ -45,5 +47,10 @@ public class Exemplo1 {
 		TrayIcon trayIcon = new TrayIcon(imageIcon, "TryIcon Java 6", popupMenu);
 		
 		tray.add(trayIcon);	
+	}
+	
+	@Test
+	public void test( ) {
+		
 	}
 }
