@@ -1,89 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="FileR" default="build">
+<project name="FileR" default="launch4j">
 
-	<property name="project" value="filer" />
-	<property name="src.path" location="src/java" />
-	<property name="rsrc.path" location="src/resources" />
-	<property name="lib.path" value="lib" />
-	<property name="generated.path" location="generated" />
-	<property name="project.jar" value="${generated.path}/${project}.jar" />
-	<property name="launch4j.dir" location="C:/Arquivos de programas/Launch4j/" />
-
-	<fileset id="x">
-		<include name="${lib.path}/commons-validator-1.3.1.jar" />
-		<include name="${lib.path}/commons-lang-2.1.jar" />
-		<include name="${lib.path}/log4j-1.2.14.jar" />
-	</fileset>
-	
-	<path id="classpath">
-		<pathelement location="${lib.path}/commons-validator-1.3.1.jar" />
-		<pathelement location="${lib.path}/commons-lang-2.1.jar" />
-		<pathelement location="${lib.path}/log4j-1.2.14.jar" />
-	</path>
+	<property name="launch4j.dir" location="launch/" />
 
 	<target name="launch4j">
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
 
-		<launch4j configFile="${rsrc.path}/filer-launch4j.xml" />
-	</target>
-
-	<target name="jar" depends="compile">
-		<echo>Gerando ${project.jar}</echo>
-		<jar destfile="${project.jar}" basedir="${generated.path}/classes">
-			<manifest>
-				<attribute name="Main-Class" value="br.com.trebor.filer.Main" />
-				<attribute name="SplashScreen-Image" value="filer-sc.png" />
-				<attribute name="Class-Path" value="" />
-			</manifest>
-		</jar>
-	</target>
-	
-	<target name="build" depends="jar" description="Gera a biblioteca ${archive.name} para uso em outros projetos.">
-
-		<copy todir="${generated.path}/${project}/lib" preservelastmodified="true">
-			<fileset dir="lib" />
-			<fileset file="${project.jar}" />
-		</copy>
-		<echo>Criando diretório de log</echo>
-		<mkdir dir="${generated.path}/${project}/logs" />
-
-		<antcall target="launch4j" />
-
-		<antcall target="zip" />
-
-		<echo>Pronto!</echo>
-	</target>
-
-	<target name="zip">
-		<zip destfile="${generated.path}/filer.zip" basedir="${generated.path}/" includes="filer/" />
-	</target>
-
-	<target name="compile" depends="prepare" description="Compila os fontes do projeto.">
-		<echo>Compilando arquivos fonte...</echo>
-		<javac destdir="${generated.path}/classes"
-			srcdir="${src.path};"
-			classpathref="classpath" 
-			encoding="ISO-8859-1"
-			listfiles="true"
-			target="6" 
-			debug="true">
-		</javac>
-		<copy todir="${generated.path}/classes" preservelastmodified="true">
-			<fileset dir="${rsrc.path}" />
-		</copy>
-		<echo>Pronto!</echo>
-	</target>
-
-	<target name="prepare" depends="clean" description="Prepara a estrutura para compilacao dos fontes.">
-		<echo>Criando pastas...</echo>
-		<mkdir dir="${generated.path}/classes" />
-		<echo>Pronto!</echo>
-	</target>
-
-	<target name="clean" description="Limpa o projeto.">
-		<echo>Limpando projeto...</echo>
-		<delete dir="${generated.path}" />
-		<echo>Pronto!</echo>
+		<launch4j configFile="src/main/resources/x.xml" />
 	</target>
 
 </project>

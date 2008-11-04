@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/maven-v4_0_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
 	<modelVersion>4.0.0</modelVersion>
 	<name>FileR</name>
 	<groupId>org.trebor</groupId>
 	<artifactId>filer</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
+	<scm>
+		<connection>scm:svn:https://trebor-filer.googlecode.com/svn/trunk</connection>
+		<developerConnection>scm:svn:https://trebor-filer.googlecode.com/svn/trunk</developerConnection>
+		<url>https://trebor-filer.googlecode.com/svn/trunk</url>
+	</scm>
 	<organization>
 		<name>TreboR</name>
 		<url>org.trebor</url>
@@ -16,6 +23,9 @@
 		<resources>
 			<resource>
 				<directory>src/main/assembly</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
 		<plugins>
@@ -33,9 +43,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>
-								br.com.trebor.filer.Main
-							</mainClass>
+							<mainClass>org.trebor.filer.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -44,22 +52,40 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<descriptors>
-						<descriptor>
-							src/main/assembly/src.xml
-						</descriptor>
+						<descriptor>src/main/assembly/src.xml</descriptor>
 					</descriptors>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>
-								br.com.trebor.filer.Main
-							</mainClass>
-						</manifest>
-					</archive>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<tasks>
+								<ant antfile="build.xml">
+									<target name="launch4j" />
+								</ant>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>jbossrepository</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/maven2/</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -78,11 +104,16 @@
 			<version>4.4</version>
 			<scope>test</scope>
 		</dependency>
-	  <dependency>
-      <groupId>org.swinglabs</groupId>
-      <artifactId>swing-layout</artifactId>
-      <version>1.0.3</version>
-    </dependency>
-  </dependencies>
+		<dependency>
+			<groupId>org.swinglabs</groupId>
+			<artifactId>swing-layout</artifactId>
+			<version>1.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jaudiotagger</groupId>
+			<artifactId>jaudiotagger</artifactId>
+			<version>1.0.8</version>
+		</dependency>
+	</dependencies>
 
 </project>
