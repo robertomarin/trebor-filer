@@ -15,8 +15,11 @@ import org.jaudiotagger.tag.TagException;
 import org.junit.Test;
 
 public class Tester {
-
 	@Test
+	public void ba() {
+
+	}
+
 	public void test() throws CannotReadException, IOException, TagException, ReadOnlyFileException,
 	InvalidAudioFrameException {
 
