@@ -13,8 +13,12 @@ import org.junit.Test;
  */
 public class CreateTestFiles {
 
-	private final String baseDir = "d:/testes/";
+	private final String baseDir = "target/testes";
 
+	public static void main(String[] args) {
+		System.out.println(new File(".").getAbsolutePath());
+	}
+	
 	@Test
 	public void createFiles() throws IOException {
 		File namesFile = new File(this.getClass().getResource("/teste.txt")

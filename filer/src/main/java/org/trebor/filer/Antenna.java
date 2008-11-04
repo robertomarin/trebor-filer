@@ -31,7 +31,15 @@
 package org.trebor.filer;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +51,53 @@ import org.trebor.filer.helper.FileHelper;
 
 public class Antenna extends javax.swing.JFrame {
 
-	private static final String[] COLUMN_NAMES = new String[] { "Atual Name", "New Name" };
+	private final class PasteClipboardMouseListener implements MouseListener {
+
+		private void doPaste() {
+			
+			Clipboard cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+			if (cb != null) {
+				Transferable contents = cb.getContents(null);
+				String path = null;
+				try {
+					path = (String) contents.getTransferData(DataFlavor.stringFlavor);
+				} catch (UnsupportedFlavorException e) {
+					throw new IllegalStateException("DataFlavor.stringFlavor não suportado!", e);
+				} catch (IOException e) {
+					throw new IllegalStateException(e);
+				}
+				
+				if(fileHelper.isDir(path)) {
+					rootRenamingDirectory.setText(path);
+				}
+			}
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			doPaste();
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+		}
+
+	}
+
+	private static final String[] COLUMN_NAMES = new String[] { "Atual Name",
+			"New Name" };
 
 	private static final long serialVersionUID = 654696448697579224L;
 
@@ -83,15 +137,21 @@ public class Antenna extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("FileR");
 
-		rootRenamingDirectoryPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(" Root Renaming Directory "));
+		rootRenamingDirectoryPanel.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(" Root Renaming Directory "));
 
 		selectRootDirectory.setText("Select root directory:");
 
-		rootRenamingDirectory.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				rootRenamingDirectoryActionPerformed(evt);
-			}
-		});
+		rootRenamingDirectory
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						System.out.println("asadkjfalçfadjskkjlfadskjlf");
+						rootRenamingDirectoryActionPerformed(evt);
+					}
+				});
+
+		rootRenamingDirectory
+				.addMouseListener(new PasteClipboardMouseListener());
 
 		preview.setText("Preview");
 		preview.addActionListener(new java.awt.event.ActionListener() {
@@ -110,25 +170,51 @@ public class Antenna extends javax.swing.JFrame {
 		org.jdesktop.layout.GroupLayout rootRenamingDirectoryPanelLayout = new org.jdesktop.layout.GroupLayout(
 				rootRenamingDirectoryPanel);
 		rootRenamingDirectoryPanel.setLayout(rootRenamingDirectoryPanelLayout);
-		rootRenamingDirectoryPanelLayout.setHorizontalGroup(rootRenamingDirectoryPanelLayout.createParallelGroup(
-				org.jdesktop.layout.GroupLayout.LEADING).add(
-				rootRenamingDirectoryPanelLayout.createSequentialGroup().addContainerGap().add(selectRootDirectory)
-						.addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(rootRenamingDirectory,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE).addPreferredGap(
-								org.jdesktop.layout.LayoutStyle.RELATED).add(browse).addPreferredGap(
-								org.jdesktop.layout.LayoutStyle.RELATED).add(preview)));
-		rootRenamingDirectoryPanelLayout.setVerticalGroup(rootRenamingDirectoryPanelLayout.createParallelGroup(
-				org.jdesktop.layout.GroupLayout.LEADING).add(
-				rootRenamingDirectoryPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE).add(
-						selectRootDirectory).add(preview).add(browse).add(rootRenamingDirectory,
-						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)));
+		rootRenamingDirectoryPanelLayout
+				.setHorizontalGroup(rootRenamingDirectoryPanelLayout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								rootRenamingDirectoryPanelLayout
+										.createSequentialGroup()
+										.addContainerGap()
+										.add(selectRootDirectory)
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(
+												rootRenamingDirectory,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												423, Short.MAX_VALUE)
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(browse)
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(preview)));
+		rootRenamingDirectoryPanelLayout
+				.setVerticalGroup(rootRenamingDirectoryPanelLayout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								rootRenamingDirectoryPanelLayout
+										.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.BASELINE)
+										.add(selectRootDirectory)
+										.add(preview)
+										.add(browse)
+										.add(
+												rootRenamingDirectory,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)));
 
-		jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(" Rename Options "));
+		jPanel2.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(" Rename Options "));
 		jPanel2.setAutoscrolls(true);
 
 		lowerCase.setText("Lower Case");
-		lowerCase.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		lowerCase.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0,
+				0, 0));
 		lowerCase.setMargin(new java.awt.Insets(0, 0, 0, 0));
 		lowerCase.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +223,8 @@ public class Antenna extends javax.swing.JFrame {
 		});
 
 		folders.setText("Folders");
-		folders.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		folders.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0,
+				0));
 		folders.setMargin(new java.awt.Insets(0, 0, 0, 0));
 		folders.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,26 +240,73 @@ public class Antenna extends javax.swing.JFrame {
 
 		filterLabel.setText("File filter (comma separated)");
 
-		org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+		org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(
+				jPanel2);
 		jPanel2.setLayout(jPanel2Layout);
-		jPanel2Layout.setHorizontalGroup(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-				.add(
-						jPanel2Layout.createSequentialGroup().addContainerGap().add(
-								jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-										lowerCase).add(folders)).add(25, 25, 25).add(
-								jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false).add(
-										jPanel2Layout.createSequentialGroup().add(filterLabel).add(74, 74, 74)).add(
-										jPanel2Layout.createSequentialGroup().add(filter).addContainerGap()))));
-		jPanel2Layout.setVerticalGroup(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-				jPanel2Layout.createSequentialGroup().add(
-						jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE).add(lowerCase).add(
-								filterLabel)).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(
-						jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE).add(folders).add(
-								filter, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-								org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addContainerGap()));
+		jPanel2Layout
+				.setHorizontalGroup(jPanel2Layout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								jPanel2Layout
+										.createSequentialGroup()
+										.addContainerGap()
+										.add(
+												jPanel2Layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING)
+														.add(lowerCase).add(
+																folders))
+										.add(25, 25, 25)
+										.add(
+												jPanel2Layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING,
+																false)
+														.add(
+																jPanel2Layout
+																		.createSequentialGroup()
+																		.add(
+																				filterLabel)
+																		.add(
+																				74,
+																				74,
+																				74))
+														.add(
+																jPanel2Layout
+																		.createSequentialGroup()
+																		.add(
+																				filter)
+																		.addContainerGap()))));
+		jPanel2Layout
+				.setVerticalGroup(jPanel2Layout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								jPanel2Layout
+										.createSequentialGroup()
+										.add(
+												jPanel2Layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.BASELINE)
+														.add(lowerCase).add(
+																filterLabel))
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(
+												jPanel2Layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.BASELINE)
+														.add(folders)
+														.add(
+																filter,
+																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+										.addContainerGap()));
 
-		jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(" Files "));
+		jPanel3.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(" Files "));
 
 		model = new javax.swing.table.DefaultTableModel(new Object[][] {
 
@@ -193,19 +327,26 @@ public class Antenna extends javax.swing.JFrame {
 			}
 		});
 
-		org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
+		org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(
+				jPanel3);
 		jPanel3.setLayout(jPanel3Layout);
-		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-				.add(org.jdesktop.layout.GroupLayout.TRAILING,
-						jPanel3Layout.createSequentialGroup().addContainerGap().add(rename)).add(
-						org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1,
-						org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE));
-		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
+		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
 				org.jdesktop.layout.GroupLayout.TRAILING,
-				jPanel3Layout.createSequentialGroup().add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-						261, Short.MAX_VALUE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(rename)));
+				jPanel3Layout.createSequentialGroup().addContainerGap().add(
+						rename)).add(org.jdesktop.layout.GroupLayout.TRAILING,
+				jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+				701, Short.MAX_VALUE));
+		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(
+				org.jdesktop.layout.GroupLayout.LEADING).add(
+				org.jdesktop.layout.GroupLayout.TRAILING,
+				jPanel3Layout.createSequentialGroup().add(jScrollPane1,
+						org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 261,
+						Short.MAX_VALUE).addPreferredGap(
+						org.jdesktop.layout.LayoutStyle.RELATED).add(rename)));
 
-		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(" Rename Patterns "));
+		jPanel4.setBorder(javax.swing.BorderFactory
+				.createTitledBorder(" Rename Patterns "));
 		jPanel4.setAutoscrolls(true);
 
 		regexLabel.setText("Regex:");
@@ -224,84 +365,178 @@ public class Antenna extends javax.swing.JFrame {
 			}
 		});
 
-		org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
+		org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(
+				jPanel4);
 		jPanel4.setLayout(jPanel4Layout);
-		jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-				.add(
-						jPanel4Layout.createSequentialGroup().addContainerGap().add(
-								jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-										regexLabel).add(regex, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 171,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
-								org.jdesktop.layout.LayoutStyle.RELATED).add(
-								jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-										jPanel4Layout.createSequentialGroup().add(replacementLabel).addContainerGap(
-												107, Short.MAX_VALUE)).add(replacement,
-										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))));
-		jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-				jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(regexLabel).add(
-						org.jdesktop.layout.GroupLayout.TRAILING,
-						jPanel4Layout.createSequentialGroup().add(replacementLabel).addPreferredGap(
-								org.jdesktop.layout.LayoutStyle.RELATED).add(
-								jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE).add(regex,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).add(replacement,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))));
+		jPanel4Layout
+				.setHorizontalGroup(jPanel4Layout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								jPanel4Layout
+										.createSequentialGroup()
+										.addContainerGap()
+										.add(
+												jPanel4Layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING)
+														.add(regexLabel)
+														.add(
+																regex,
+																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+																171,
+																org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(
+												jPanel4Layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING)
+														.add(
+																jPanel4Layout
+																		.createSequentialGroup()
+																		.add(
+																				replacementLabel)
+																		.addContainerGap(
+																				107,
+																				Short.MAX_VALUE))
+														.add(
+																replacement,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																173,
+																Short.MAX_VALUE))));
+		jPanel4Layout
+				.setVerticalGroup(jPanel4Layout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								jPanel4Layout
+										.createParallelGroup(
+												org.jdesktop.layout.GroupLayout.LEADING)
+										.add(regexLabel)
+										.add(
+												org.jdesktop.layout.GroupLayout.TRAILING,
+												jPanel4Layout
+														.createSequentialGroup()
+														.add(replacementLabel)
+														.addPreferredGap(
+																org.jdesktop.layout.LayoutStyle.RELATED)
+														.add(
+																jPanel4Layout
+																		.createParallelGroup(
+																				org.jdesktop.layout.GroupLayout.BASELINE)
+																		.add(
+																				regex,
+																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+																		.add(
+																				replacement,
+																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))));
 
-		org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+		org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(
+				getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-				org.jdesktop.layout.GroupLayout.TRAILING,
-				layout.createSequentialGroup().addContainerGap().add(
-						layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING).add(
-								org.jdesktop.layout.GroupLayout.LEADING, jPanel3,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).add(
-								org.jdesktop.layout.GroupLayout.LEADING, rootRenamingDirectoryPanel,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).add(
-								org.jdesktop.layout.GroupLayout.LEADING,
-								layout.createSequentialGroup().add(jPanel2,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
-										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-										org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
-										org.jdesktop.layout.LayoutStyle.RELATED).add(jPanel4,
-										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-										org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-						.addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(
-				layout.createSequentialGroup().addContainerGap().add(rootRenamingDirectoryPanel,
-						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-						org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(
-						org.jdesktop.layout.LayoutStyle.RELATED).add(
-						layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false).add(jPanel2, 0, 70,
-								Short.MAX_VALUE).add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-								org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addPreferredGap(
-						org.jdesktop.layout.LayoutStyle.RELATED).add(jPanel3,
-						org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE).addContainerGap()));
+		layout
+				.setHorizontalGroup(layout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								org.jdesktop.layout.GroupLayout.TRAILING,
+								layout
+										.createSequentialGroup()
+										.addContainerGap()
+										.add(
+												layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.TRAILING)
+														.add(
+																org.jdesktop.layout.GroupLayout.LEADING,
+																jPanel3,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
+														.add(
+																org.jdesktop.layout.GroupLayout.LEADING,
+																rootRenamingDirectoryPanel,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE)
+														.add(
+																org.jdesktop.layout.GroupLayout.LEADING,
+																layout
+																		.createSequentialGroup()
+																		.add(
+																				jPanel2,
+																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+																		.addPreferredGap(
+																				org.jdesktop.layout.LayoutStyle.RELATED)
+																		.add(
+																				jPanel4,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																				Short.MAX_VALUE)))
+										.addContainerGap()));
+		layout
+				.setVerticalGroup(layout
+						.createParallelGroup(
+								org.jdesktop.layout.GroupLayout.LEADING)
+						.add(
+								layout
+										.createSequentialGroup()
+										.addContainerGap()
+										.add(
+												rootRenamingDirectoryPanel,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(
+												layout
+														.createParallelGroup(
+																org.jdesktop.layout.GroupLayout.LEADING,
+																false)
+														.add(jPanel2, 0, 70,
+																Short.MAX_VALUE)
+														.add(
+																jPanel4,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+																Short.MAX_VALUE))
+										.addPreferredGap(
+												org.jdesktop.layout.LayoutStyle.RELATED)
+										.add(
+												jPanel3,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												org.jdesktop.layout.GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addContainerGap()));
 
 		myStuff();
 		pack();
 	}// </editor-fold>
 
 	private void myStuff() {
-		rootRenamingDirectory.getDocument().addDocumentListener(new DocumentListener() {
+		rootRenamingDirectory.getDocument().addDocumentListener(
+				new DocumentListener() {
 
-			public void changedUpdate(DocumentEvent e) {
-				verify();
-			}
+					public void changedUpdate(DocumentEvent e) {
+						verify();
+					}
 
-			public void insertUpdate(DocumentEvent e) {
-				verify();
-			}
+					public void insertUpdate(DocumentEvent e) {
+						verify();
+					}
 
-			public void removeUpdate(DocumentEvent e) {
-				verify();
-			}
-		});
+					public void removeUpdate(DocumentEvent e) {
+						verify();
+					}
+				});
 		verify();
 	}
 
@@ -313,10 +548,13 @@ public class Antenna extends javax.swing.JFrame {
 		}
 
 		if (fileHelper.rename(files)) {
-			JOptionPane.showMessageDialog(null, "arquivos renomeados corretamente!\n Veja seu log aqui: "
-			/* fileHelper.getLogFileName() */, "Rename Success", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"arquivos renomeados corretamente!\n Veja seu log aqui: "
+					/* fileHelper.getLogFileName() */, "Rename Success",
+					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(null, "erro ao renomear arquivos!", "Rename Fail", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "erro ao renomear arquivos!",
+					"Rename Fail", JOptionPane.ERROR_MESSAGE);
 		}
 
 		files = null;
@@ -360,7 +598,8 @@ public class Antenna extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
-	private void rootRenamingDirectoryActionPerformed(java.awt.event.ActionEvent evt) {
+	private void rootRenamingDirectoryActionPerformed(
+			java.awt.event.ActionEvent evt) {
 		browse();
 	}
 
@@ -420,24 +659,17 @@ public class Antenna extends javax.swing.JFrame {
 	}
 
 	public boolean filer() {
-		this.files = fileHelper.filer(rootRenamingDirectory.getText(), regex.getText(), replacement.getText(), filter
-				.getText(), lowerCase.isSelected(), folders.isSelected());
+		this.files = fileHelper.filer(rootRenamingDirectory.getText(), regex
+				.getText(), replacement.getText(), filter.getText(), lowerCase
+				.isSelected(), folders.isSelected());
 
-		// TableModel model = new DefaultTableModel(new String[] { "Old Name",
-		// "New Name" }, files.size());
-		// int i = 0;
 		eraseTableModel();
 		for (File key : files.keySet()) {
-			// model.setValueAt(key.getName(), i, 0);
-			// model.insertRow(i++, new File[] {key, files.get(key)});
-			model.addRow(new String[] { key.getName(), files.get(key).getName() });
+			model
+					.addRow(new String[] { key.getName(),
+							files.get(key).getName() });
 		}
 
-		// Object[] array = files.keySet().toArray();
-		// Object[] array2 = files.values().toArray();
-		// model.
-
-		// table.setModel(model);
 		return !files.isEmpty();
 	}
 

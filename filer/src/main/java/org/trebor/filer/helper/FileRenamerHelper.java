@@ -2,17 +2,15 @@ package org.trebor.filer.helper;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.commons.validator.GenericValidator;
+import java.util.TreeMap;
 
 public class FileRenamerHelper {
-	private Map<File, File> files;
+	private final Map<File, File> files;
 
-	private boolean lowerCase;
+	private final boolean lowerCase;
 
-	private String regex;
+	private final String regex;
 
 	private String[] fileTypes;
 
@@ -20,11 +18,11 @@ public class FileRenamerHelper {
 
 	private final String replacement;
 
-	public FileRenamerHelper(String regex, String replacement, String fileTypesString, boolean lowerCase,
-			boolean justDirectory) {
+	public FileRenamerHelper(final String regex, final String replacement, final String fileTypesString,
+			final boolean lowerCase, final boolean justDirectory) {
 
 		this.regex = regex;
-		this.replacement = !GenericValidator.isBlankOrNull(replacement) ? replacement : "";
+		this.replacement = replacement != null ? replacement : "";
 		this.justDirectory = justDirectory;
 
 		if (fileTypesString != null) {
@@ -32,12 +30,12 @@ public class FileRenamerHelper {
 		}
 
 		this.lowerCase = lowerCase;
-		files = new HashMap<File, File>();
+		files = new TreeMap<File, File>();
 	}
 
-	public Map<File, File> generateFileNames(File dirRoot) {
-		File[] fileList = dirRoot.listFiles(new FileFilter() {
-			public boolean accept(File pathname) {
+	public Map<File, File> generateFileNames(final File dirRoot) {
+		final File[] fileList = dirRoot.listFiles(new FileFilter() {
+			public boolean accept(final File pathname) {
 				if (justDirectory) {
 					return pathname.isDirectory();
 				}
@@ -45,14 +43,18 @@ public class FileRenamerHelper {
 			}
 		});
 
+		for (final File file : fileList) {
+			System.out.println(file);
+		}
+
 		for (int i = 0; i < fileList.length; i++) {
-			File file = fileList[i];
+			final File file = fileList[i];
 
 			if (file.isDirectory()) {
 				generateFileNames(file);
 			}
 
-			File newFile = generateFileName(file);
+			final File newFile = generateFileName(file);
 			if (newFile == null)
 				continue;
 
@@ -67,14 +69,14 @@ public class FileRenamerHelper {
 		return files;
 	}
 
-	private File generateFileName(File file) {
+	private File generateFileName(final File file) {
 		if (file == null) {
 			throw new IllegalArgumentException("argument file cannot be null");
 		}
 
 		String fileName = file.getName();
 		boolean ok = false;
-		for (String fileType : fileTypes) {
+		for (final String fileType : fileTypes) {
 			if (fileName.endsWith(fileType)) {
 				ok = true;
 				break;

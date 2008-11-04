@@ -18,20 +18,20 @@ public class Main {
 
 	private static final long MINIMUN_TIME = 3000;
 
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 
-		Runnable runner = new Runnable() {
+		final Runnable runner = new Runnable() {
 
 			private Antenna fd;
 
 			public void run() {
-				long startTime = System.currentTimeMillis();
-				SplashScreen splash = SplashScreen.getSplashScreen();
+				final long startTime = System.currentTimeMillis();
+				final SplashScreen splash = SplashScreen.getSplashScreen();
 
 				fd = new Antenna();
 				fd.setVisible(true);
-				fd.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				
+				fd.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
 				new FilerSystemTray(fd).startSystemTray();
 				setLookAndFeel(fd);
 
@@ -46,13 +46,13 @@ public class Main {
 
 			}
 
-			private void sleepIfNecessary(long startTime) {
-				long diferenceTime = System.currentTimeMillis() - startTime;
+			private void sleepIfNecessary(final long startTime) {
+				final long diferenceTime = System.currentTimeMillis() - startTime;
 
 				if (diferenceTime < MINIMUN_TIME) {
 					try {
 						Thread.sleep(MINIMUN_TIME - diferenceTime);
-					} catch (InterruptedException e) {
+					} catch (final InterruptedException e) {
 						throw new IllegalStateException(e);
 					}
 				}
@@ -62,12 +62,12 @@ public class Main {
 		EventQueue.invokeLater(runner);
 	}
 
-	private static void setLookAndFeel(Component fd) {
-		String lookAndFeelClassName = UIManager.getSystemLookAndFeelClassName();
+	private static void setLookAndFeel(final Component fd) {
+		final String lookAndFeelClassName = UIManager.getSystemLookAndFeelClassName();
 		try {
 			UIManager.setLookAndFeel(lookAndFeelClassName);
 			SwingUtilities.updateComponentTreeUI(fd);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			JOptionPane.showMessageDialog(fd, "Can't change look and feel:" + lookAndFeelClassName, "Invalid PLAF",
 					JOptionPane.ERROR_MESSAGE);
 		}
