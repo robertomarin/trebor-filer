@@ -9,9 +9,8 @@
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	<scm>
-		<connection>scm:svn:http://trebor-filer.googlecode.com/svn/trunk</connection>
-		<developerConnection>scm:svn:http://trebor-filer.googlecode.com/svn/trunk</developerConnection>
-		<url>https://trebor-filer.googlecode.com/svn/trunk</url>
+		<connection>scm:svn:http://trebor-filer.googlecode.com/svn/trunk/filer</connection>
+		<url>http://trebor-filer.googlecode.com/svn/trunk/filer</url>
 	</scm>
 	<organization>
 		<name>TreboR</name>
