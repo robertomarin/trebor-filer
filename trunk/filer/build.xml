@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="FileR" default="launch4j">
 
-	<property name="launch4j.dir" location="launch/" />
+	<property name="launch4j.dir" location="launch4j-dep/" />
 
 	<target name="launch4j">
 		<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar" />
