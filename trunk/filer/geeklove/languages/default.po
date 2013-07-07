@@ -1,0 +1,1148 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Stag Framework v1.0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-09 07:52+0530\n"
+"PO-Revision-Date: 2013-03-09 07:53+0530\n"
+"Last-Translator: Ram Ratan Maurya <owner@codestag.com>\n"
+"Language-Team:  <support@codestag.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../archive.php:23
+#, php-format
+msgid "All posts in %s"
+msgstr ""
+
+#: ../archive.php:25
+#, php-format
+msgid "All posts tagged %s"
+msgstr ""
+
+#: ../archive.php:27 ../archive.php:29 ../archive.php:31
+msgid "Archive for"
+msgstr "Achivei Fore"
+
+#: ../archive.php:33
+msgid "All posts by"
+msgstr ""
+
+#: ../archive.php:35
+msgid "Blog Archives"
+msgstr ""
+
+#: ../archive.php:48 ../content-standard.php:15
+#: ../includes/widgets/homepage-blog.php:55
+#: ../includes/widgets/homepage-event.php:52
+#, php-format
+msgid "Permanent Link to %s"
+msgstr ""
+
+#: ../archive.php:55 ../index.php:37
+#: ../page-templates/template-guestbook.php:110
+#: ../page-templates/template-photo-gallery.php:78
+msgid "Previous Page"
+msgstr ""
+
+#: ../archive.php:56 ../index.php:38
+#: ../page-templates/template-guestbook.php:111
+#: ../page-templates/template-photo-gallery.php:79
+msgid "Next Page"
+msgstr ""
+
+#: ../comments.php:9
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: ../comments.php:25 ../content-standard.php:11
+#: ../includes/widgets/homepage-blog.php:52
+msgid "0 Comments"
+msgstr ""
+
+#: ../comments.php:25 ../content-standard.php:11
+#: ../includes/widgets/homepage-blog.php:52
+msgid "1 Comment"
+msgstr ""
+
+#: ../comments.php:25 ../content-standard.php:11
+#: ../includes/widgets/homepage-blog.php:52
+msgid "% Comments"
+msgstr ""
+
+#: ../comments.php:27
+msgid "Leave a Comment"
+msgstr ""
+
+#: ../comments.php:38
+msgid "Trackbacks for this post"
+msgstr ""
+
+#: ../comments.php:61
+msgid "Comments are now closed for this article."
+msgstr ""
+
+#: ../comments.php:90
+msgid "Your Comment"
+msgstr ""
+
+#: ../comments.php:91
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: ../comments.php:92
+#, php-format
+msgid ""
+"Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of "
+"this account\">Log out &raquo;</a>"
+msgstr ""
+
+#: ../comments.php:95
+msgid "Submit a Comment"
+msgstr "Submitty the community"
+
+#: ../comments.php:96
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: ../comments.php:97
+msgid "Cancel Reply"
+msgstr ""
+
+#: ../comments.php:98
+msgid "Submit Comment"
+msgstr ""
+
+#: ../comments.php:100 ../page-templates/template-contact.php:23
+msgid "Your Name"
+msgstr ""
+
+#: ../comments.php:101 ../page-templates/template-contact.php:31
+msgid "Your Email"
+msgstr ""
+
+#: ../content-standard.php:29
+msgid "Pages:"
+msgstr ""
+
+#: ../functions.php:40
+msgid "Footer Widgets"
+msgstr ""
+
+#: ../functions.php:49
+msgid "Homepage Widgets"
+msgstr ""
+
+#: ../functions.php:55
+msgid "Use only widgets whose name starts with \"Homepage: \""
+msgstr ""
+
+#: ../functions.php:85
+msgid "Primary Menu"
+msgstr ""
+
+#: ../functions.php:192
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../index.php:61
+msgid "Error 404 - Not Found"
+msgstr ""
+
+#: ../index.php:65
+msgid "Sorry, but you are looking for something that isn't here."
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:170
+#: ../framework/stag-admin-functions.php:249
+msgid "Remove"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:402
+msgid "Add New"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:403
+#: ../framework/stag-admin-functions.php:427
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:404
+#: ../framework/stag-admin-functions.php:425
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:405
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:406
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:407
+#: ../framework/stag-admin-functions.php:420
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:408
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:409
+#, php-format
+msgid "No %s found in Trash"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:421
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:422
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:426
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:428
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:429
+#, php-format
+msgid "Separate %s with commas"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:430
+#, php-format
+msgid "Add or remove %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:431
+#, php-format
+msgid "Choose from the most used %s"
+msgstr ""
+
+#: ../framework/stag-admin-functions.php:507
+#: ../framework/stag-admin-page-update.php:14
+#, php-format
+msgid ""
+"<strong>There is a new version of the %s theme available.</strong> You have "
+"version %s installed. <a href=\"%s\">Update to version %s</a>."
+msgstr ""
+
+#: ../framework/stag-admin-init.php:56
+#: ../framework/stag-theme-functions.php:241
+msgid "Theme Options"
+msgstr ""
+
+#: ../framework/stag-admin-init.php:57
+msgid "Advanced"
+msgstr ""
+
+#: ../framework/stag-admin-page-options.php:9
+#, php-format
+msgid "%s activated, please save settings before leaving this page."
+msgstr ""
+
+#: ../framework/stag-admin-page-options.php:64
+msgid "Reset settings"
+msgstr ""
+
+#: ../framework/stag-admin-page-options.php:65
+msgid "Save Changes"
+msgstr ""
+
+#: ../framework/stag-admin-page-options.php:82
+msgid "You do not have sufficient permissions to save these options."
+msgstr ""
+
+#: ../framework/stag-admin-page-options.php:95
+msgid "Settings Successfully Saved!"
+msgstr ""
+
+#: ../framework/stag-admin-page-options.php:108
+msgid "You do not have sufficient permissions to reset these options."
+msgstr ""
+
+#: ../framework/stag-admin-page-update.php:7
+msgid "Theme Updates"
+msgstr ""
+
+#: ../framework/stag-admin-page-update.php:39
+#: ../framework/stag-admin-page-update.php:45
+msgid "Changelog"
+msgstr ""
+
+#: ../framework/stag-admin-page-update.php:50
+msgid "<p>Error: Unable to fetch the changelog.</p>"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:10
+msgid "Button URL"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:11
+msgid "Add the button's url eg http://example.com"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:15
+msgid "Button Style"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:16
+msgid "Select the button's style, ie the button's colour"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:30
+msgid "Button Size"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:31
+msgid "Select the button's size"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:40
+msgid "Button Type"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:41
+msgid "Select the button's type"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:49
+msgid "Button Target"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:50
+msgid "_self = open in same window. _blank = open in new window"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:59
+msgid "Button's Text"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:60
+msgid "Add the button's text"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:64
+msgid "Insert Button Shortcode"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:74
+msgid "Alert Style"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:75
+msgid "Select the alert's style, ie the alert colour"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:88
+msgid "Alert Text"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:89
+msgid "Add the alert's text"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:93
+msgid "Insert Alert Shortcode"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:103
+msgid "Toggle Content Title"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:104
+msgid "Add the title that will go above the toggle content"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:110
+msgid "Toggle Content"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:111
+msgid "Add the toggle content. Will accept HTML"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:115
+msgid "Toggle State"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:116
+msgid "Select the state of the toggle on page load"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:125
+msgid "Insert Toggle Content Shortcode"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:134
+msgid "Insert Tab Shortcode"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:140
+msgid "Tab Title"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:141
+msgid "Title of the tab"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:146
+msgid "Tab Content"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:147
+msgid "Add the tabs content"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:151
+msgid "Add Tab"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:158
+msgid "Insert Columns Shortcode"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:165
+msgid "Column Type"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:166
+msgid "Select the type, ie width of the column."
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:195
+msgid "Column Content"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:196
+msgid "Add the column content."
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:200
+msgid "Add Column"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:213
+msgid "Author Name"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:214
+msgid "Select the User to display."
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:219
+#: ../framework/shortcodes/tinymce/config.php:235
+msgid "Insert Author Shortcode"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:228
+msgid "Intro Text"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:229
+msgid "Enter the intro text."
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:243
+msgid "Divider"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:244
+msgid "Select the style of the Divider"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:259
+msgid "Insert Divider"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:269
+msgid "Code"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:270
+msgid "Input your code without code tags."
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:274
+msgid "Code Type"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:275
+msgid "Select the type of code you are using."
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:287
+msgid "Highlight Lines"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:288
+msgid "Enter the lines to highlight. For example: 3,5-7,10"
+msgstr ""
+
+#: ../framework/shortcodes/tinymce/config.php:292
+msgid "Insert Code Shortcode"
+msgstr ""
+
+#: ../framework/updater/framework-update.php:6
+msgid "Stag Framework Update"
+msgstr ""
+
+#: ../includes/theme-customizer.php:6
+msgid "Styling Options"
+msgstr ""
+
+#: ../includes/theme-customizer.php:22
+msgid "Choose Site Background"
+msgstr ""
+
+#: ../includes/theme-customizer.php:28
+msgid "Choose accent color"
+msgstr ""
+
+#: ../includes/cpt/events.php:5 ../includes/cpt/events.php:6
+msgid "Events"
+msgstr ""
+
+#: ../includes/cpt/events.php:8
+msgid "Add New Events"
+msgstr ""
+
+#: ../includes/cpt/events.php:9
+msgid "Edit Events"
+msgstr ""
+
+#: ../includes/cpt/events.php:10
+msgid "New Events"
+msgstr ""
+
+#: ../includes/cpt/events.php:11
+msgid "View Events"
+msgstr ""
+
+#: ../includes/cpt/events.php:12
+msgid "Search Events"
+msgstr ""
+
+#: ../includes/cpt/events.php:13
+msgid "No events found"
+msgstr ""
+
+#: ../includes/cpt/events.php:14
+msgid "No events found in Trash"
+msgstr ""
+
+#: ../includes/cpt/events.php:23 ../includes/cpt/events.php:34
+msgid "events"
+msgstr ""
+
+#: ../includes/cpt/events.php:41
+msgid "Event Title"
+msgstr ""
+
+#: ../includes/cpt/events.php:42 ../includes/metaboxes/event-metabox.php:21
+msgid "Event Date"
+msgstr ""
+
+#: ../includes/cpt/events.php:43 ../includes/metaboxes/event-metabox.php:28
+msgid "Event Time"
+msgstr ""
+
+#: ../includes/cpt/events.php:44 ../includes/cpt/gallery.php:47
+#: ../includes/cpt/guestbook.php:44 ../includes/cpt/rsvp.php:46
+msgid "Date Added"
+msgstr ""
+
+#: ../includes/cpt/events.php:53
+msgid "time"
+msgstr ""
+
+#: ../includes/cpt/events.php:56
+msgid "event_date"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:5 ../includes/cpt/gallery.php:6
+#: ../includes/metaboxes/gallery-metabox.php:7
+msgid "Gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:8
+msgid "Add New Gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:9
+msgid "Edit Gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:10
+msgid "New Gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:11
+msgid "View Gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:12
+msgid "Search Gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:13
+msgid "No galleries found"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:14
+msgid "No galleries found in Trash"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:23 ../includes/cpt/gallery.php:35
+#: ../includes/cpt/gallery.php:39
+msgid "gallery"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:39
+msgid "photo-type"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:39
+msgid "Categories"
+msgstr ""
+
+#: ../includes/cpt/gallery.php:46
+msgid "Gallery Title"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:5
+msgid "Guestbook Messages"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:6
+msgid "Guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:8
+msgid "Add New Guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:9
+msgid "Edit Guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:10
+msgid "New Guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:11
+msgid "View Guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:12
+msgid "Search Guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:13
+msgid "No Guestbooks found"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:14
+msgid "No Guestbooks found in Trash"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:23 ../includes/cpt/guestbook.php:35
+msgid "the-guestbook"
+msgstr ""
+
+#: ../includes/cpt/guestbook.php:43
+msgid "Name"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:5
+msgid "Attendees"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:6
+msgid "RSVP"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:8
+msgid "Add New RSVP"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:9
+msgid "Edit RSVP"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:10
+msgid "New RSVP"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:11
+msgid "View RSVP"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:12
+msgid "Search RSVP"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:13
+msgid "No RSVPs found"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:14
+msgid "No RSVPs found in Trash"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:23 ../includes/cpt/rsvp.php:35
+msgid "rsvp"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:43
+msgid "RSVP Title"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:44
+msgid "Number of Attendees"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:45 ../includes/metaboxes/rsvp-metabox.php:21
+msgid "Event Attending"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:55
+msgid "attendee_number"
+msgstr ""
+
+#: ../includes/cpt/rsvp.php:58
+msgid "attendee_event"
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:7
+msgid "Contact Prefrences"
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:8
+msgid "Edit your contact preferences"
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:14
+msgid "Secondary Title"
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:15
+msgid "Enter the secondary title, used for second section on contact page."
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:21
+msgid "Contact Number"
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:22
+msgid "Enter your contact number."
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:28
+msgid "Email Address"
+msgstr ""
+
+#: ../includes/metaboxes/contact-metabox.php:29
+msgid "Enter your email address."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:7
+msgid "Event Settings"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:8
+msgid "Edit your event date, time, location and featured images"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:14
+msgid "Event Page Sub Title"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:15
+msgid "Enter the sub title for the event, used to display on single post."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:22
+msgid "Choose the event date."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:29
+msgid "Enter the event timings."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:35
+msgid "Event Featured Image"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:36
+msgid ""
+"Choose a featured image for event, ideal size 460px x 185px. Used to display "
+"on homepage."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:42
+msgid "Event Cover"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:43
+msgid ""
+"Choose a background cover for event, ideal size 1260px x 260px. Used to "
+"display on single post."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:49
+msgid "Event Location"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:50
+msgid "Enter the location of the event"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:56
+msgid "Event Map Link"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:57
+msgid "Enter the Google map link to display a map."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:69
+msgid "Linked Page"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:70
+msgid "Display a link after the post to another page."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:76
+msgid "Linked Page URL"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:77
+msgid ""
+"This URL will used to display a link on the bottom of the page to display a "
+"link to another page (optional)."
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:83
+msgid "Linked Page Button Title"
+msgstr ""
+
+#: ../includes/metaboxes/event-metabox.php:84
+msgid "Display text for link."
+msgstr ""
+
+#: ../includes/metaboxes/gallery-metabox.php:8
+msgid "Upload images for this gallery"
+msgstr ""
+
+#: ../includes/metaboxes/gallery-metabox.php:14
+msgid "Gallery Pics"
+msgstr ""
+
+#: ../includes/metaboxes/gallery-metabox.php:15
+msgid "Choose bulk images for gallery."
+msgstr ""
+
+#: ../includes/metaboxes/page-metabox.php:7
+msgid "Page Settings"
+msgstr ""
+
+#: ../includes/metaboxes/page-metabox.php:8
+msgid "Add a subtitle and page cover."
+msgstr ""
+
+#: ../includes/metaboxes/page-metabox.php:14
+msgid "Page Sub Title"
+msgstr ""
+
+#: ../includes/metaboxes/page-metabox.php:15
+msgid "Enter the sub title for the page."
+msgstr ""
+
+#: ../includes/metaboxes/page-metabox.php:21
+msgid "Page Cover"
+msgstr ""
+
+#: ../includes/metaboxes/page-metabox.php:22
+msgid "Choose a background cover for this page, ideal size 1260px x 260px."
+msgstr ""
+
+#: ../includes/metaboxes/rsvp-metabox.php:7
+msgid "RSVP Information"
+msgstr ""
+
+#: ../includes/metaboxes/rsvp-metabox.php:8
+msgid "Attendee Information"
+msgstr ""
+
+#: ../includes/metaboxes/rsvp-metabox.php:14
+msgid "Attendee Number"
+msgstr ""
+
+#: ../includes/metaboxes/rsvp-metabox.php:15
+msgid "How many people are attending the event?"
+msgstr ""
+
+#: ../includes/metaboxes/rsvp-metabox.php:22
+msgid "Which event attending?"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:8
+msgid "SEO Settings"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:9
+msgid "Customize the SEO settings of your posts/pages"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:15
+msgid "Title"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:16
+msgid ""
+"Enter the post title, most search engines use a maximum of 60 characters."
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:22
+msgid "Description"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:23
+msgid ""
+"Enter the post SEO description, most search engines use a maximum of 160 "
+"characters."
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:29
+msgid "Keywords"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:30
+msgid "A comma separated list of keywords"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:36
+msgid "Meta Robots Index"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:37
+msgid "Do you want robots to index this page?"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:44
+msgid "Meta Robots Follow"
+msgstr ""
+
+#: ../includes/metaboxes/seo.php:45
+msgid "Do you want robots to follow links from this page?"
+msgstr ""
+
+#: ../includes/options/blog-settings.php:5
+msgid "Modify your blog settings."
+msgstr ""
+
+#: ../includes/options/styling-options.php:5
+msgid ""
+"Configure the visual appearance of your theme, or insert any custom CSS. You "
+"can also edit your site color scheme using <a href=\""
+msgstr ""
+
+#: ../includes/options/wedding-options.php:5
+msgid "Customize your homepage preferences."
+msgstr ""
+
+#: ../includes/widgets/homepage-blog.php:6
+msgid "Display a recent post from blog."
+msgstr ""
+
+#: ../includes/widgets/homepage-blog.php:8
+msgid "Homepage: Blog"
+msgstr ""
+
+#: ../includes/widgets/homepage-blog.php:108
+#: ../includes/widgets/homepage-event.php:94
+#: ../includes/widgets/homepage-gallery.php:121
+#: ../includes/widgets/homepage-rsvp.php:131
+#: ../includes/widgets/homepage-tweets.php:123
+#: ../includes/widgets/homepage-wedding-intro.php:123
+#: ../includes/widgets/widget-flickr.php:67
+#: ../includes/widgets/widget-twitter.php:72
+msgid "Title:"
+msgstr ""
+
+#: ../includes/widgets/homepage-blog.php:113
+#: ../includes/widgets/homepage-gallery.php:126
+#: ../includes/widgets/homepage-rsvp.php:136
+#: ../includes/widgets/homepage-tweets.php:128
+msgid "Sub Title:"
+msgstr ""
+
+#: ../includes/widgets/homepage-blog.php:118
+msgid "Post Count:"
+msgstr ""
+
+#: ../includes/widgets/homepage-countdown.php:6
+msgid "Display wedding countdown."
+msgstr ""
+
+#: ../includes/widgets/homepage-countdown.php:8
+msgid "Homepage: Wedding Countdown"
+msgstr ""
+
+#: ../includes/widgets/homepage-countdown.php:67
+msgid "Yay! No Options to set!"
+msgstr ""
+
+#: ../includes/widgets/homepage-divider.php:6
+msgid "Separate homepage sections with this horizontal divider."
+msgstr ""
+
+#: ../includes/widgets/homepage-divider.php:8
+msgid "Homepage: Section Divider"
+msgstr ""
+
+#: ../includes/widgets/homepage-divider.php:47
+msgid "Yay! No options to set!"
+msgstr ""
+
+#: ../includes/widgets/homepage-event.php:6
+msgid "Display wedding event details on homepage."
+msgstr ""
+
+#: ../includes/widgets/homepage-event.php:8
+msgid "Homepage: Wedding Event"
+msgstr ""
+
+#: ../includes/widgets/homepage-event.php:99
+msgid "Welcome Text:"
+msgstr ""
+
+#: ../includes/widgets/homepage-gallery.php:6
+msgid "Display Gallery pics from a specific category."
+msgstr ""
+
+#: ../includes/widgets/homepage-gallery.php:8
+msgid "Homepage: Wedding Gallery"
+msgstr ""
+
+#: ../includes/widgets/homepage-gallery.php:131
+msgid "Category:"
+msgstr ""
+
+#: ../includes/widgets/homepage-gallery.php:142
+msgid "Choose category from which to display photos"
+msgstr ""
+
+#: ../includes/widgets/homepage-gallery.php:146
+msgid "Linked Page:"
+msgstr ""
+
+#: ../includes/widgets/homepage-rsvp.php:6
+msgid "Display RSVP form."
+msgstr ""
+
+#: ../includes/widgets/homepage-rsvp.php:8
+msgid "Homepage: RSVP Form"
+msgstr ""
+
+#: ../includes/widgets/homepage-tweets.php:6
+msgid "Display back to back tweets from bridegroom and bride."
+msgstr ""
+
+#: ../includes/widgets/homepage-tweets.php:8
+msgid "Homepage: Wedding Couple Tweets"
+msgstr ""
+
+#: ../includes/widgets/homepage-tweets.php:133
+msgid "Bridegroom Twitter Username:"
+msgstr ""
+
+#: ../includes/widgets/homepage-tweets.php:138
+msgid "Bride Twitter Username:"
+msgstr ""
+
+#: ../includes/widgets/homepage-wedding-intro.php:6
+msgid "Display wedding intro on homepage."
+msgstr ""
+
+#: ../includes/widgets/homepage-wedding-intro.php:8
+msgid "Homepage: Wedding Intro"
+msgstr ""
+
+#: ../includes/widgets/widget-flickr.php:8
+msgid "Display Flickr photos from a user's photostream"
+msgstr ""
+
+#: ../includes/widgets/widget-flickr.php:11
+msgid "Custom Flickr Photos"
+msgstr ""
+
+#: ../includes/widgets/widget-flickr.php:72
+msgid "Flickr ID:"
+msgstr ""
+
+#: ../includes/widgets/widget-flickr.php:77
+msgid "Number of Photos:"
+msgstr ""
+
+#: ../includes/widgets/widget-flickr.php:85
+msgid "Type (user or group):"
+msgstr ""
+
+#: ../includes/widgets/widget-flickr.php:93
+msgid "Display (random or latest):"
+msgstr ""
+
+#: ../includes/widgets/widget-twitter.php:6
+msgid "Display your latest Twitter tweets."
+msgstr ""
+
+#: ../includes/widgets/widget-twitter.php:8
+msgid "Custom Twitter Feeds"
+msgstr ""
+
+#: ../includes/widgets/widget-twitter.php:77
+msgid "Twitter username:"
+msgstr ""
+
+#: ../includes/widgets/widget-twitter.php:82
+msgid "Number of tweets (max 20):"
+msgstr ""
+
+#: ../includes/widgets/widget-twitter.php:87
+msgid "Follow text e.g. Follow on twitter"
+msgstr ""
+
+#: ../page-templates/template-contact.php:112
+msgid "Thanks, your message was sent successfully."
+msgstr ""
+
+#: ../page-templates/template-guestbook.php:133
+msgid "There isn't any messsage yet!"
+msgstr ""
