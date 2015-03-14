@@ -1,0 +1,1 @@
+Do you have problems to rename multiple files? Now you have a solution: FileR - A simple way to file renaming!
